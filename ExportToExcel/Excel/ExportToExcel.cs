@@ -66,23 +66,21 @@ namespace ExportToExcel.Excel
                         excelWorkSheet.Range[excelWorkSheet.Cells[fRow + 1, fCol], excelWorkSheet.Cells[fRow + 1, table.Columns.Count]],
                         mFileName, dataSource, userName);
 
+                    var header = excelWorkSheet.Range[excelWorkSheet.Cells[startRow, 1],
+                        excelWorkSheet.Cells[startRow, table.Columns.Count]];
+                    header.Interior.ColorIndex = 34;
 
                     for (var i = 1; i < table.Columns.Count + 1; i++)
                     {
                         excelWorkSheet.Cells[startRow, i] = table.Columns[i - 1].ColumnName;
-                        var header = excelWorkSheet.Range[excelWorkSheet.Cells[startRow, i],
-                            excelWorkSheet.Cells[startRow, i]];
-                        header.Interior.ColorIndex = 34;
-
 
                         var newRng = excelWorkSheet.Range[excelWorkSheet.Cells[startRow + 1, i],
                             excelWorkSheet.Cells[endIndex, i]];
-
-
+                        // format as datetime
                         if (table.Columns[i - 1].DataType == Type.GetType("System.DateTime"))
                             newRng.NumberFormat =
                                 Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern;
-
+                        // format as decimal ( integer )
                         else if (table.Columns[i - 1].DataType == Type.GetType("System.Decimal") ||
                                  table.Columns[i - 1].DataType == Type.GetType("System.Int32"))
                         {
@@ -97,6 +95,7 @@ namespace ExportToExcel.Excel
 
                             newRng.HorizontalAlignment = XlHAlign.xlHAlignRight;
                         }
+                        // default format
                         else
                             newRng.NumberFormat = "@";
                     }
@@ -133,10 +132,10 @@ namespace ExportToExcel.Excel
                     var firstRow = (Range)excelWorkSheet.Rows[startRow];
 
                     firstRow.AutoFilter(fRow,
-                        Type.Missing,
-                        XlAutoFilterOperator.xlAnd,
-                        Type.Missing,
-                        true);
+                        Criteria1: Type.Missing,
+                        Operator: XlAutoFilterOperator.xlAnd,
+                        Criteria2: Type.Missing,
+                        VisibleDropDown: true);
 
 
 

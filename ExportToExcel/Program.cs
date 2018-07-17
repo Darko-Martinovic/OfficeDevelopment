@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Runtime.InteropServices.ComTypes;
 using ExportToExcel.Data;
 
 namespace ExportToExcel
@@ -10,6 +11,7 @@ namespace ExportToExcel
         // ReSharper disable once ArrangeTypeMemberModifiers
         static void Main(string[] args)
         {
+            var t1 = DateTime.Now;
             var query = ConfigurationManager.AppSettings["TestQuery"];
             const string name = "Sales_SalesOrderHeader;Sales_SalesOrderDetail";
             Console.WriteLine("Getting Data Source");
@@ -28,9 +30,12 @@ namespace ExportToExcel
                 Console.WriteLine(error2);
                 Console.ReadLine();
                 return;
-
             }
-            Console.WriteLine("Success! Check file : " + fileName);
+
+            var t2 = DateTime.Now;
+            TimeSpan ts = t2 - t1;
+
+            Console.WriteLine($"Success in {ts}! Check file : {fileName}");
             Console.WriteLine("Press any key to exit");
             Console.ReadLine();
 
