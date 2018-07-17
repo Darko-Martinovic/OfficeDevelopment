@@ -127,6 +127,8 @@ namespace ExportToExcel.Excel
                     // bug in Excel 
                     //excelWorkSheet.Application.ActiveWindow.SplitRow = startRow;
                     //excelWorkSheet.Application.ActiveWindow.SplitColumn = fCol;
+                    //excelWorkSheet.Application.ActiveWindow.FreezePanes = true;
+
 
                     // apply auto filter
                     var firstRow = (Range)excelWorkSheet.Rows[startRow];
