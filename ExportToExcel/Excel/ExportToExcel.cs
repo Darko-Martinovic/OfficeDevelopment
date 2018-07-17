@@ -11,7 +11,11 @@ namespace ExportToExcel.Excel
 {
     public static class ExportToExcel
     {
-        public static void Export(bool pasteRange, DataSet ds, string mDatoteka, string title, out string errorString)
+        public static void Export(bool pasteRange, 
+                                  DataSet ds, 
+                                  string mFileName, 
+                                  string title, 
+                                  out string errorString)
         {
             errorString = string.Empty;
             var excelApp = new Application
@@ -21,12 +25,11 @@ namespace ExportToExcel.Excel
                 DisplayClipboardWindow = false,
                 DisplayFullScreen = false,
                 ScreenUpdating = false,
-                //WindowState = XlWindowState.xlMinimizedWindowState = XlWindowState.xlMinimized
                 WindowState = XlWindowState.xlNormal
             };
 
             // Create an Excel workbook instance and open it from the predefined location
-            var excelWorkBook = excelApp.Workbooks.Add(Type.Missing);
+            var excelWorkBook = excelApp.Workbooks.Add(Template: Type.Missing);
 
             const int startRow = 3;
             const int fRow = 1;
@@ -61,7 +64,7 @@ namespace ExportToExcel.Excel
                         localTitle);
                     FormatSecondRow(
                         excelWorkSheet.Range[excelWorkSheet.Cells[fRow + 1, fCol], excelWorkSheet.Cells[fRow + 1, table.Columns.Count]],
-                        mDatoteka, dataSource, userName);
+                        mFileName, dataSource, userName);
 
 
                     for (var i = 1; i < table.Columns.Count + 1; i++)
@@ -147,7 +150,7 @@ namespace ExportToExcel.Excel
                 ((Worksheet)excelApp.ActiveWorkbook.Sheets[excelApp.ActiveWorkbook.Sheets.Count]).Delete();
 
 
-                excelWorkBook.SaveAs(Filename: mDatoteka,
+                excelWorkBook.SaveAs(Filename: mFileName,
                     FileFormat: XlFileFormat.xlOpenXMLWorkbook,
                     Password: Missing.Value,
                     WriteResPassword: Missing.Value,
