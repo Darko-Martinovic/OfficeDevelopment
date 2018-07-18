@@ -50,7 +50,7 @@ namespace SimpleTalkExcellAddin
             // 
             this.tab1.Groups.Add(this.group1);
             this.tab1.Groups.Add(this.group2);
-            this.tab1.Label = "Simple Talk";
+            this.tab1.Label = "Test";
             this.tab1.Name = "tab1";
             // 
             // group1

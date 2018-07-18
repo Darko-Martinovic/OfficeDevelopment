@@ -4,7 +4,6 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
-// ReSharper disable RedundantAssignment
 
 namespace ComputeHashGui
 {
@@ -25,25 +24,24 @@ namespace ComputeHashGui
             txtFile.Text = fd.FileName;
             var filePath = fd.FileName;
             var filePathNormalized = Path.GetFullPath(filePath);
-
-            var h = DetermineHasher((HashType) cmbHasher.SelectedItem);
-
             var fs = new FileStream(filePathNormalized, FileMode.Open, FileAccess.Read);
-
-            var sha = new SHA256Managed();
-            var byteHash = sha.ComputeHash(fs);
-            fs.Position = 0;
-            var resultHash = h.ComputeHash(fs);
-
             var sb = new StringBuilder();
             sb.AppendLine("File name - " + fd.FileName);
-            sb.AppendLine(cmbHasher.SelectedItem.ToString()); // + ComputeHash(fs, HashType.Sha256));
-            sb.AppendLine(Convert.ToBase64String(resultHash, 0, resultHash.Length));
-            sb.AppendLine("Sha256");
-            sb.AppendLine(Convert.ToBase64String(byteHash, 0, byteHash.Length));
+            sb.AppendLine(Environment.NewLine);
+            sb.AppendLine("SHA1- " + ComputeHash(fs, HashType.Sha1));
+            sb.AppendLine(Environment.NewLine);
+            sb.AppendLine("SHA256- " + ComputeHash(fs, HashType.Sha256));
+            sb.AppendLine(Environment.NewLine);
+            sb.AppendLine("SHA384- " + ComputeHash(fs, HashType.Sha384));
+            sb.AppendLine(Environment.NewLine);
+            sb.AppendLine("SHA512- " + ComputeHash(fs, HashType.Sha512));
+            sb.AppendLine(Environment.NewLine);
+            sb.AppendLine("MD5- " + ComputeHash(fs, HashType.Md5));
+            sb.AppendLine(Environment.NewLine);
+            sb.AppendLine("Ripemd160- " + ComputeHash(fs, HashType.Ripemd160));
             fs.Close();
-
-            var fileResult = Path.Combine(Path.GetDirectoryName(filePath) ?? throw new InvalidOperationException(),"Hasher.txt");
+            string fileResult = Path.GetDirectoryName(fd.FileName) + "Hasher_" +
+                                DateTime.Now.ToString("dd_MM_yyyy_hh_mm_ss") + ".txt";
 
             using (var outfile = new StreamWriter(fileResult, append: false, encoding: Encoding.UTF8))
             {
@@ -53,21 +51,19 @@ namespace ComputeHashGui
             Process.Start("notepad.exe", fileResult);
             // ReSharper disable once RedundantAssignment
             sb = null;
-            fs = null;
-            h = null;
-            sha = null;
-            byteHash = null;
+
 
 
         }
 
         private enum HashType
         {
+            Sha1,
             Sha256,
             Sha384,
             Sha512,
             Md5,
-            Sha1
+            Ripemd160
         }
 
         private static HashAlgorithm DetermineHasher(HashType h)
@@ -90,15 +86,20 @@ namespace ComputeHashGui
                 case HashType.Md5:
                     ha = new MD5CryptoServiceProvider();
                     break;
+                case HashType.Ripemd160:
+                    ha = new RIPEMD160Managed();
+                    break;
             }
 
             return ha;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private static string ComputeHash(Stream fs, HashType hs)
         {
-            cmbHasher.DataSource = Enum.GetValues(typeof(HashType));
-            cmbHasher.SelectedItem = HashType.Sha256;
+            var ha = DetermineHasher(hs);
+            var byteHash = ha.ComputeHash(fs);
+            return Convert.ToBase64String(byteHash, 0, byteHash.Length);
         }
+
     }
 }

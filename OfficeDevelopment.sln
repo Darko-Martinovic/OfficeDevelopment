@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutLookAddin", "OutLookAddi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWordAddIn", "TestWordAddIn\TestWordAddIn.csproj", "{7242C958-DDB9-4446-8C22-24202617BC59}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputeHashGui", "ComputeHashGui\ComputeHashGui.csproj", "{1CD0E96F-D214-4FC7-BDFF-30A06112339B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{7242C958-DDB9-4446-8C22-24202617BC59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7242C958-DDB9-4446-8C22-24202617BC59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7242C958-DDB9-4446-8C22-24202617BC59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CD0E96F-D214-4FC7-BDFF-30A06112339B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CD0E96F-D214-4FC7-BDFF-30A06112339B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CD0E96F-D214-4FC7-BDFF-30A06112339B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CD0E96F-D214-4FC7-BDFF-30A06112339B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
