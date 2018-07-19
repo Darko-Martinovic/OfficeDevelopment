@@ -50,7 +50,6 @@ namespace SimpleTalkExcellAddin
             txtServer.Focus();
             if (!Debugger.IsAttached) return;
 
-            txtServer.Text = @"your instance name";
             txtQuery.Text = @"
 
 SELECT [SalesOrderID]

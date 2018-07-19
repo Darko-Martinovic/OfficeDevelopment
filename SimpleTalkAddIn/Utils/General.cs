@@ -9,12 +9,20 @@ namespace SimpleTalkExcellAddin.Utils
 {
     internal static class General
     {
-        public static void FormatAsTable(Excel.Range sourceRange, string tableName, string tableStyleName)
+        public static void FormatAsTable(
+                                          Excel.Range sourceRange,
+                                          string tableName,
+                                          string tableStyleName,
+                                          bool isSelected
+            )
         {
-            sourceRange.Worksheet.ListObjects.Add(Excel.XlListObjectSourceType.xlSrcRange,
-                    sourceRange, Type.Missing, Excel.XlYesNoGuess.xlYes, Type.Missing).Name =
-                tableName;
-            sourceRange.Select();
+            sourceRange.Worksheet.ListObjects.Add(SourceType: Excel.XlListObjectSourceType.xlSrcRange,
+                    Source: sourceRange, LinkSource: Type.Missing, XlListObjectHasHeaders: Excel.XlYesNoGuess.xlYes,
+                    Destination: Type.Missing).Name = tableName;
+
+            if (isSelected)
+                sourceRange.Select();
+
             sourceRange.Worksheet.ListObjects[tableName].TableStyle = tableStyleName;
         }
 
@@ -24,26 +32,24 @@ namespace SimpleTalkExcellAddin.Utils
             Excel.Range pivotData,
             XlChartType type)
         {
-            Excel.ChartObjects chartObjects = (Excel.ChartObjects)pivotWorkSheet.ChartObjects();
-            Excel.ChartObject pivotChart = chartObjects.Add(Left: 60, Top: 250, Width: 325, Height: 275);
+            var chartObjects = (Excel.ChartObjects)pivotWorkSheet.ChartObjects();
+            var pivotChart = chartObjects.Add(Left: 60, Top: 250, Width: 325, Height: 275);
 
-            //pivotChart.Chart.HasTitle = true;
-            //pivotChart.Chart.ChartTitle.Text = "Ukupno";
-            pivotChart.Chart.ChartWizard(pivotData,
-                type,
+            pivotChart.Chart.ChartWizard(Source: pivotData,
+                Gallery: type,
                 Title: myTitle,
                 HasLegend: true,
                 CategoryLabels: 6,
                 SeriesLabels: 0);
 
-            pivotChart.Chart.Location(Excel.XlChartLocation.xlLocationAsNewSheet, Type.Missing);
+            pivotChart.Chart.Location(Where: Excel.XlChartLocation.xlLocationAsNewSheet, Name: Type.Missing);
         }
 
         internal static void AddSlicers(
             Excel.Workbook eWorkbook,
             Excel.PivotTable pivotTable,
             Excel.Worksheet pivotWorkSheet,
-            List<string> slicerNames)
+            IEnumerable<string> slicerNames)
         {
             const int top = 350;
             const int width = 200;
@@ -67,50 +73,36 @@ namespace SimpleTalkExcellAddin.Utils
             DataTable dataSource,
             int counter,
             string myTitle,
-            List<string> fieldRowNames,
-            List<string> fieldColumnNames,
-            List<string> fieldValueNames,
-            List<string> fieldReportNames
+            IEnumerable<string> fieldRowNames,
+            IEnumerable<string> fieldColumnNames,
+            IEnumerable<string> fieldValueNames,
+            IEnumerable<string> fieldReportNames
         )
         {
             var sheets = Globals.ThisAddIn.Application.ActiveWorkbook.Sheets;
             var pivotTableName = myTitle;
-
-            //var sheets = Globals.ThisAddIn.Application.ActiveWorkbook.Sheets;
-
             var pivotWorkSheet = (Excel.Worksheet)sheets.Add();
             pivotWorkSheet.Name = myTitle + (counter);
-
-            // specify first cell for pivot table
-            //Excel.Range oRange2 = pivotWorkSheet.Cells[1, 1];
 
 
             //Add a PivotTable to the worksheet.
             pivotWorkSheet.PivotTableWizard(
-                Excel.XlPivotTableSourceType.xlDatabase,
-                pivotData,
-                pivotWorkSheet.Cells[1, 1], // first cell of the pivot table
-                pivotTableName
+                SourceType: Excel.XlPivotTableSourceType.xlDatabase,
+                SourceData: pivotData,
+                TableDestination: pivotWorkSheet.Cells[1, 1], // first cell of the pivot table
+                TableName: pivotTableName
             );
 
-            ////Set variables used to manipulate the PivotTable.
-            Excel.PivotTable pivotTable =
+            //Set variables used to manipulate the PivotTable.
+            var pivotTable =
                 (Excel.PivotTable)pivotWorkSheet.PivotTables(pivotTableName);
 
 
             //Format the PivotTable.
-            //pivotTable.TableStyle2 = "PivotStyleLight16";
             pivotTable.TableStyle2 = tableStyle;
             pivotTable.InGridDropZones = false;
-            //pivotTable.Summary = "Ukupno";
-            //pivotTable.AlternativeText = "Tester";
-
             pivotTable.GrandTotalName = "Total";
 
-
-            //pivotTable.AllowMultipleFilters = true; run-time exception
-            //pivotTable.CompactLayoutColumnHeader = "Header";
-            //pivotTable.Tag = "Tag";
 
             foreach (var name in fieldRowNames)
             {
@@ -122,26 +114,16 @@ namespace SimpleTalkExcellAddin.Utils
 
             }
 
-            //var i = 0;
-            //Array.Resize(ref colField, fieldColumnNames.Length + 1);
 
             foreach (var name in fieldColumnNames)
             {
                 // find out number of distinct values 
                 var distValues = dataSource.DefaultView.ToTable(true, name).Rows.Count;
                 if (distValues > 255) continue;
-
-
                 var colField = (Excel.PivotField)pivotTable.PivotFields(name);
-
                 colField.Orientation = Excel.XlPivotFieldOrientation.xlColumnField;
             }
 
-            //colField2 = (Excel.PivotField)pivotTable.PivotFields("Kvartal");
-
-            //colField2.Orientation = Excel.XlPivotFieldOrientation.xlColumnField;
-
-            //colField3 = (Excel.PivotField)pivotTable.PivotFields("Mjesec");
 
             //colField3.Orientation = Excel.XlPivotFieldOrientation.xlColumnField;
 
@@ -170,9 +152,6 @@ namespace SimpleTalkExcellAddin.Utils
             }
 
 
-
-
-            //colField.Caption = "Godina";
             return pivotWorkSheet;
         }
 

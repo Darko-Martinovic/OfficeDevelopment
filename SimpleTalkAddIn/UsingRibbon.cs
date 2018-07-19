@@ -11,10 +11,10 @@ using DataTable = System.Data.DataTable;
 using Cthread = System.Threading.Thread;
 using SimpleTalkExcellAddin.Utils;
 
-    //How to make pfx
-    //MakeCert /n "CN=SimpleTalk" /r /h 0 /eku "1.3.6.1.5.5.7.3.3,1.3.6.1.4.1.311.10.3.13" /e "01/16/2174" /sv SimpleTalk.pvk SimpleTalk.cer /a 
-    //pvk2pfx -pvk SimpleTalk.pvk -spc SimpleTalk.cer -pfx SimpleTalk.pfx –f
-    //--
+//How to make pfx
+//MakeCert /n "CN=SimpleTalk" /r /h 0 /eku "1.3.6.1.5.5.7.3.3,1.3.6.1.4.1.311.10.3.13" /e "01/16/2174" /sv SimpleTalk.pvk SimpleTalk.cer /a 
+//pvk2pfx -pvk SimpleTalk.pvk -spc SimpleTalk.cer -pfx SimpleTalk.pfx –f
+//--
 
 
 namespace SimpleTalkExcellAddin
@@ -30,9 +30,11 @@ namespace SimpleTalkExcellAddin
             if (inputForm.ShowDialog() == DialogResult.OK)
             {
                 _myInput = inputForm.MyInputs;
-
             }
-
+            else
+            {
+                return;
+            }
             if (_myInput == null)
                 return;
 
@@ -94,7 +96,7 @@ namespace SimpleTalkExcellAddin
                 TableStyle = ConfigurationManager.AppSettings["TableStyle"],
                 PivotStyle = ConfigurationManager.AppSettings["PivotStyle"],
                 ChartType = (XlChartType)Enum.Parse(typeof(XlChartType), ConfigurationManager.AppSettings["ChartType"])
-        };
+            };
 
 
 
@@ -193,7 +195,7 @@ namespace SimpleTalkExcellAddin
             }
 
             General.FormatAsTable(sheet.Range[sheet.Cells[startRow, 1], sheet.Cells[endIndex, dataSource.Columns.Count]],
-                "SourceData" + counter, tableStyle);
+                "SourceData" + counter, tableStyle, false);
 
 
             //eApplication.Visible = true;

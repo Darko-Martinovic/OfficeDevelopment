@@ -38,8 +38,8 @@ namespace SimpleTalkExcellAddin
         {
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
-            this.btnCaptureUserInput = this.Factory.CreateRibbonButton();
             this.group2 = this.Factory.CreateRibbonGroup();
+            this.btnCaptureUserInput = this.Factory.CreateRibbonButton();
             this.btnNoInput = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
@@ -50,14 +50,21 @@ namespace SimpleTalkExcellAddin
             // 
             this.tab1.Groups.Add(this.group1);
             this.tab1.Groups.Add(this.group2);
-            this.tab1.Label = "Test";
+            this.tab1.Label = "Simple Talk";
             this.tab1.Name = "tab1";
+            this.tab1.Position = this.Factory.RibbonPosition.BeforeOfficeId("TabInsert");
             // 
             // group1
             // 
             this.group1.Items.Add(this.btnCaptureUserInput);
             this.group1.Label = "Test user input";
             this.group1.Name = "group1";
+            // 
+            // group2
+            // 
+            this.group2.Items.Add(this.btnNoInput);
+            this.group2.Label = "No user input";
+            this.group2.Name = "group2";
             // 
             // btnCaptureUserInput
             // 
@@ -68,12 +75,6 @@ namespace SimpleTalkExcellAddin
             this.btnCaptureUserInput.ScreenTip = "Popup message bellow  icon";
             this.btnCaptureUserInput.ShowImage = true;
             this.btnCaptureUserInput.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
-            // 
-            // group2
-            // 
-            this.group2.Items.Add(this.btnNoInput);
-            this.group2.Label = "No user input";
-            this.group2.Name = "group2";
             // 
             // btnNoInput
             // 

@@ -1,13 +1,23 @@
-﻿namespace SimpleTalkExcellAddin
+﻿using System.Diagnostics;
+using System.Windows.Forms;
+
+namespace SimpleTalkExcellAddin
 {
     public partial class ThisAddIn
     {
-        private void ThisAddIn_Startup(object sender, System.EventArgs e)
+        private void ThisAddInStartup(object sender, System.EventArgs e)
         {
+            //put your code here
+            //if (Debugger.IsAttached)
+            //    Debugger.Break();
         }
 
-        private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
+        private void ThisAddInShutdown(object sender, System.EventArgs e)
         {
+            //put your code here
+            //if (Debugger.IsAttached)
+            //    Debugger.Break();
+
         }
 
         #region VSTO generated code
@@ -18,8 +28,8 @@
         /// </summary>
         private void InternalStartup()
         {
-            Startup += ThisAddIn_Startup;
-            Shutdown += ThisAddIn_Shutdown;
+            Startup += ThisAddInStartup;
+            Shutdown += ThisAddInShutdown;
         }
         
         #endregion

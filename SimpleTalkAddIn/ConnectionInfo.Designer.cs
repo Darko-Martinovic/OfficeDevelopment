@@ -57,14 +57,14 @@ namespace SimpleTalkExcellAddin
             this.lstReportFilters = new System.Windows.Forms.ListBox();
             this.lstMain = new System.Windows.Forms.ListBox();
             this.tbOptions = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cmbPivotStyles = new System.Windows.Forms.ComboBox();
+            this.cmbTableStyles = new System.Windows.Forms.ComboBox();
+            this.cmbCharTypes = new System.Windows.Forms.ComboBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnGenerate = new System.Windows.Forms.Button();
-            this.cmbCharTypes = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.cmbTableStyles = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.cmbPivotStyles = new System.Windows.Forms.ComboBox();
             this.mtbMain.SuspendLayout();
             this.tbConnection.SuspendLayout();
             this.tbQuery.SuspendLayout();
@@ -119,6 +119,7 @@ namespace SimpleTalkExcellAddin
             // 
             // txtServer
             // 
+            this.txtServer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtServer.Location = new System.Drawing.Point(37, 44);
             this.txtServer.Name = "txtServer";
             this.txtServer.Size = new System.Drawing.Size(247, 20);
@@ -193,6 +194,7 @@ namespace SimpleTalkExcellAddin
             // 
             // txtPassword
             // 
+            this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPassword.Enabled = false;
             this.txtPassword.Location = new System.Drawing.Point(39, 234);
             this.txtPassword.Name = "txtPassword";
@@ -201,6 +203,7 @@ namespace SimpleTalkExcellAddin
             // 
             // txtUserName
             // 
+            this.txtUserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUserName.Enabled = false;
             this.txtUserName.Location = new System.Drawing.Point(39, 163);
             this.txtUserName.Name = "txtUserName";
@@ -232,6 +235,7 @@ namespace SimpleTalkExcellAddin
             this.txtQuery.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtQuery.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtQuery.Location = new System.Drawing.Point(3, 49);
             this.txtQuery.Multiline = true;
             this.txtQuery.Name = "txtQuery";
@@ -315,11 +319,12 @@ namespace SimpleTalkExcellAddin
             // 
             this.lstRows.AllowDrop = true;
             this.lstRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstRows.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstRows.HorizontalScrollbar = true;
             this.lstRows.Location = new System.Drawing.Point(454, 299);
             this.lstRows.Name = "lstRows";
-            this.lstRows.Size = new System.Drawing.Size(176, 82);
+            this.lstRows.Size = new System.Drawing.Size(176, 67);
             this.lstRows.TabIndex = 1;
             this.lstRows.DragDrop += new System.Windows.Forms.DragEventHandler(this.LstMain_DragDrop);
             this.lstRows.DragOver += new System.Windows.Forms.DragEventHandler(this.LstMain_DragOver);
@@ -329,11 +334,12 @@ namespace SimpleTalkExcellAddin
             // 
             this.lstValues.AllowDrop = true;
             this.lstValues.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstValues.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstValues.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstValues.HorizontalScrollbar = true;
             this.lstValues.Location = new System.Drawing.Point(230, 164);
             this.lstValues.Name = "lstValues";
-            this.lstValues.Size = new System.Drawing.Size(176, 82);
+            this.lstValues.Size = new System.Drawing.Size(176, 67);
             this.lstValues.TabIndex = 1;
             this.lstValues.DragDrop += new System.Windows.Forms.DragEventHandler(this.LstMain_DragDrop);
             this.lstValues.DragOver += new System.Windows.Forms.DragEventHandler(this.LstMain_DragOver);
@@ -343,11 +349,12 @@ namespace SimpleTalkExcellAddin
             // 
             this.lstColumns.AllowDrop = true;
             this.lstColumns.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstColumns.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstColumns.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstColumns.HorizontalScrollbar = true;
             this.lstColumns.Location = new System.Drawing.Point(454, 164);
             this.lstColumns.Name = "lstColumns";
-            this.lstColumns.Size = new System.Drawing.Size(176, 82);
+            this.lstColumns.Size = new System.Drawing.Size(176, 67);
             this.lstColumns.TabIndex = 1;
             this.lstColumns.DragDrop += new System.Windows.Forms.DragEventHandler(this.LstMain_DragDrop);
             this.lstColumns.DragOver += new System.Windows.Forms.DragEventHandler(this.LstMain_DragOver);
@@ -357,11 +364,12 @@ namespace SimpleTalkExcellAddin
             // 
             this.lstReportFilters.AllowDrop = true;
             this.lstReportFilters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstReportFilters.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstReportFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstReportFilters.HorizontalScrollbar = true;
             this.lstReportFilters.Location = new System.Drawing.Point(454, 41);
             this.lstReportFilters.Name = "lstReportFilters";
-            this.lstReportFilters.Size = new System.Drawing.Size(176, 82);
+            this.lstReportFilters.Size = new System.Drawing.Size(176, 67);
             this.lstReportFilters.TabIndex = 1;
             this.lstReportFilters.DragDrop += new System.Windows.Forms.DragEventHandler(this.LstMain_DragDrop);
             this.lstReportFilters.DragOver += new System.Windows.Forms.DragEventHandler(this.LstMain_DragOver);
@@ -370,12 +378,13 @@ namespace SimpleTalkExcellAddin
             // lstMain
             // 
             this.lstMain.AllowDrop = true;
+            this.lstMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstMain.HorizontalScrollbar = true;
             this.lstMain.Location = new System.Drawing.Point(11, 41);
             this.lstMain.MultiColumn = true;
             this.lstMain.Name = "lstMain";
-            this.lstMain.Size = new System.Drawing.Size(176, 355);
+            this.lstMain.Size = new System.Drawing.Size(176, 353);
             this.lstMain.TabIndex = 1;
             this.lstMain.DragDrop += new System.Windows.Forms.DragEventHandler(this.LstMain_DragDrop);
             this.lstMain.DragOver += new System.Windows.Forms.DragEventHandler(this.LstMain_DragOver);
@@ -396,6 +405,57 @@ namespace SimpleTalkExcellAddin
             this.tbOptions.Text = "Options";
             this.tbOptions.UseVisualStyleBackColor = true;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(20, 91);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(60, 13);
+            this.label13.TabIndex = 1;
+            this.label13.Text = "Pivot styles";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(20, 54);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(65, 13);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "Table Styles";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(20, 20);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(64, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "Chart Types";
+            // 
+            // cmbPivotStyles
+            // 
+            this.cmbPivotStyles.FormattingEnabled = true;
+            this.cmbPivotStyles.Location = new System.Drawing.Point(98, 88);
+            this.cmbPivotStyles.Name = "cmbPivotStyles";
+            this.cmbPivotStyles.Size = new System.Drawing.Size(202, 21);
+            this.cmbPivotStyles.TabIndex = 0;
+            // 
+            // cmbTableStyles
+            // 
+            this.cmbTableStyles.FormattingEnabled = true;
+            this.cmbTableStyles.Location = new System.Drawing.Point(98, 51);
+            this.cmbTableStyles.Name = "cmbTableStyles";
+            this.cmbTableStyles.Size = new System.Drawing.Size(202, 21);
+            this.cmbTableStyles.TabIndex = 0;
+            // 
+            // cmbCharTypes
+            // 
+            this.cmbCharTypes.FormattingEnabled = true;
+            this.cmbCharTypes.Location = new System.Drawing.Point(98, 17);
+            this.cmbCharTypes.Name = "cmbCharTypes";
+            this.cmbCharTypes.Size = new System.Drawing.Size(202, 21);
+            this.cmbCharTypes.TabIndex = 0;
+            // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -415,57 +475,6 @@ namespace SimpleTalkExcellAddin
             this.btnGenerate.TabStop = false;
             this.btnGenerate.Text = "Execute";
             this.btnGenerate.Click += new System.EventHandler(this.mtbExecute_Click);
-            // 
-            // cmbCharTypes
-            // 
-            this.cmbCharTypes.FormattingEnabled = true;
-            this.cmbCharTypes.Location = new System.Drawing.Point(98, 17);
-            this.cmbCharTypes.Name = "cmbCharTypes";
-            this.cmbCharTypes.Size = new System.Drawing.Size(202, 21);
-            this.cmbCharTypes.TabIndex = 0;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(20, 20);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(64, 13);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Chart Types";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(20, 54);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 13);
-            this.label12.TabIndex = 1;
-            this.label12.Text = "Table Styles";
-            // 
-            // cmbTableStyles
-            // 
-            this.cmbTableStyles.FormattingEnabled = true;
-            this.cmbTableStyles.Location = new System.Drawing.Point(98, 51);
-            this.cmbTableStyles.Name = "cmbTableStyles";
-            this.cmbTableStyles.Size = new System.Drawing.Size(202, 21);
-            this.cmbTableStyles.TabIndex = 0;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(20, 91);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(60, 13);
-            this.label13.TabIndex = 1;
-            this.label13.Text = "Pivot styles";
-            // 
-            // cmbPivotStyles
-            // 
-            this.cmbPivotStyles.FormattingEnabled = true;
-            this.cmbPivotStyles.Location = new System.Drawing.Point(98, 88);
-            this.cmbPivotStyles.Name = "cmbPivotStyles";
-            this.cmbPivotStyles.Size = new System.Drawing.Size(202, 21);
-            this.cmbPivotStyles.TabIndex = 0;
             // 
             // ConnectionInfo
             // 
