@@ -62,7 +62,7 @@ namespace ImportFromExcel
                 xlApp.Quit();
                 // ReSharper disable once RedundantAssignment
                 dic = null;
-                Console.WriteLine("Successfully imporeted!");
+                Console.WriteLine("Successfully imported!");
                 Console.WriteLine("Press any key to exit");
                 Console.ReadLine();
 
