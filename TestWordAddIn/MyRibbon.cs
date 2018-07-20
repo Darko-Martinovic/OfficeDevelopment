@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text;
 using Office = Microsoft.Office.Core;
 using Word = Microsoft.Office.Interop.Word;
 
@@ -32,20 +29,14 @@ namespace TestWordAddIn
     [ComVisible(true)]
     public class MyRibbon : Office.IRibbonExtensibility
     {
-        private Office.IRibbonUI ribbon;
-
-        public MyRibbon()
-        {
-        }
-
         public void OnTextButton(Office.IRibbonControl control)
         {
-            Word.Range currentRange = Globals.ThisAddIn.Application.Selection.Range;
+            var currentRange = Globals.ThisAddIn.Application.Selection.Range;
             currentRange.Text = "This text was added by the Ribbon.";
         }
         public void OnTableButton(Office.IRibbonControl control)
         {
-            object missing = System.Type.Missing;
+            object missing = Type.Missing;
             Word.Range currentRange = Globals.ThisAddIn.Application.Selection.Range;
             Word.Table newTable = Globals.ThisAddIn.Application.ActiveDocument.Tables.Add(currentRange, 3, 4, ref missing, ref missing);
             // Get all of the borders except for the diagonal borders.
@@ -68,7 +59,7 @@ namespace TestWordAddIn
 
             #region IRibbonExtensibility Members
 
-            public string GetCustomUI(string ribbonID)
+            public string GetCustomUI(string ribbonId)
         {
             return GetResourceText("TestWordAddIn.MyRibbon.xml");
         }
@@ -78,9 +69,8 @@ namespace TestWordAddIn
         #region Ribbon Callbacks
         //Create callback methods here. For more information about adding callback methods, visit https://go.microsoft.com/fwlink/?LinkID=271226
 
-        public void Ribbon_Load(Office.IRibbonUI ribbonUI)
+        public void Ribbon_Load(Office.IRibbonUI ribbonUi)
         {
-            this.ribbon = ribbonUI;
         }
 
         #endregion
@@ -89,19 +79,14 @@ namespace TestWordAddIn
 
         private static string GetResourceText(string resourceName)
         {
-            Assembly asm = Assembly.GetExecutingAssembly();
-            string[] resourceNames = asm.GetManifestResourceNames();
-            for (int i = 0; i < resourceNames.Length; ++i)
+            var asm = Assembly.GetExecutingAssembly();
+            var resourceNames = asm.GetManifestResourceNames();
+            foreach (var t in resourceNames)
             {
-                if (string.Compare(resourceName, resourceNames[i], StringComparison.OrdinalIgnoreCase) == 0)
+                if (string.Compare(resourceName, t, StringComparison.OrdinalIgnoreCase) != 0) continue;
+                using (var resourceReader = new StreamReader(asm.GetManifestResourceStream(t) ?? throw new InvalidOperationException()))
                 {
-                    using (StreamReader resourceReader = new StreamReader(asm.GetManifestResourceStream(resourceNames[i])))
-                    {
-                        if (resourceReader != null)
-                        {
-                            return resourceReader.ReadToEnd();
-                        }
-                    }
+                    return resourceReader.ReadToEnd();
                 }
             }
             return null;

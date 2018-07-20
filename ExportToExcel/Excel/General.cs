@@ -24,20 +24,5 @@ namespace ExportToExcel.Excel
 
             return result;
         }
-
-        internal static string GetColumnName(int colNum)
-        {
-            var div = colNum;
-            var name = string.Empty;
-
-            while (div > 0)
-            {
-                var m = (div - 1) % 26;
-                name = System.Convert.ToChar(65 + m) + name;
-                div = (div - m) / 26;
-            }
-
-            return name;
-        }
     }
 }

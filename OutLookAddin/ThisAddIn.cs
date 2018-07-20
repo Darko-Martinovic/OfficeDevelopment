@@ -1,5 +1,4 @@
 ﻿using Outlook = Microsoft.Office.Interop.Outlook;
-using Office = Microsoft.Office.Core;
 
 namespace OutLookAddin
 {
@@ -11,15 +10,11 @@ namespace OutLookAddin
 
         void Inspectors_NewInspector(Outlook.Inspector inspector)
         {
-            if (inspector.CurrentItem is Outlook.MailItem mailItem)
-            {
-                if (mailItem.EntryID == null)
-                {
-                    mailItem.Subject = @"Mal subject added by using Outlook add-in";
-                    mailItem.Body = @"Mal body added by using Outlook add-in";
-                }
+            if (!(inspector.CurrentItem is Outlook.MailItem mailItem)) return;
+            if (mailItem.EntryID != null) return;
 
-            }
+            mailItem.Subject = @"Mal subject added by using Outlook add-in";
+            mailItem.Body = @"Mal body added by using Outlook add-in";
         }
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {

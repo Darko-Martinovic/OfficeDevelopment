@@ -49,7 +49,7 @@ namespace ExportToExcel.Excel
 
                 foreach (DataTable table in ds.Tables)
                 {
-                    // Add a new worksheet to workbook with the Datatable name
+                    // Add a new worksheet to workbook with the Data table name
                     var excelWorkSheet = (Worksheet)excelWorkBook.Worksheets.Add();
 
                     // Name is limited to 32 chars
