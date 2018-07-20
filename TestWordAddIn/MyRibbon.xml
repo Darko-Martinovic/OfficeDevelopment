@@ -10,7 +10,7 @@
           <button id="tableButton"  label="Insert" screentip="Table" onAction="OnTableButton"  size="large" getImage="GetTable" supertip="Inserts a table at the cursor location."/>
         </group>
         <group id="ContentGroup3" label="Spell Checking">
-          <button id="checkSpellingButton"  label="Check" screentip="Spelling" onAction="OnSpellingButton" size="large"  getImage="spell_get"  showImage="1" supertip="Check spelling"/>
+          <button id="checkSpellingButton"  label="Check" screentip="Spelling" onAction="OnSpellingButton" size="large"  getImage="GetSpell"   supertip="Check spelling"/>
         </group>
 
       </tab>     
