@@ -25,7 +25,7 @@ namespace TestWordAddIn
             object startLocation = Globals.ThisAddIn.Application.ActiveDocument.Content.Start;
             object endLocation = Globals.ThisAddIn.Application.ActiveDocument.Content.End;
 
-            var spellCheck = Globals.ThisAddIn.Application.CheckSpelling(Globals.ThisAddIn.Application.ActiveDocument
+            var spellCheck = Globals.ThisAddIn.Application.CheckSpelling(Word: Globals.ThisAddIn.Application.ActiveDocument
                 .Range(ref startLocation, ref endLocation).Text);
 
             MessageBox.Show(spellCheck ? @"Everything OK" : @"There are mistakes", spellCheck ? "Info" : "Error",
@@ -48,7 +48,9 @@ namespace TestWordAddIn
         {
             var missing = Type.Missing;
             var currentRange = Globals.ThisAddIn.Application.Selection.Range;
-            var newTable = Globals.ThisAddIn.Application.ActiveDocument.Tables.Add(currentRange, 3, 4, ref missing, ref missing);
+            var newTable = Globals.ThisAddIn.Application.ActiveDocument.Tables.Add(Range: currentRange, NumRows: 3,
+                NumColumns: 4, DefaultTableBehavior: ref missing, AutoFitBehavior: ref missing);
+
             // Get all of the borders except for the diagonal borders.
             var borders = new Word.Border[6];
             borders[0] = newTable.Borders[Word.WdBorderType.wdBorderLeft];
