@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customUI onLoad="Ribbon_Load" xmlns="http://schemas.microsoft.com/office/2006/01/customui">
+    <ribbon>
+        <tabs>
+            <tab id="tab1" insertBeforeMso="TabInsert" label="Simple Talk">
+                <group id="group1" label="Test user input">
+                    <button id="btnCaptureUserInput" onAction="button1_Click" screentip="Popup message bellow  icon" label="With User Input" size="large" />
+                </group>
+                <group id="group2" label="No user input">
+                    <button id="btnNoInput" onAction="btnNoInput_Click" label="No Input" size="large" />
+                </group>
+            </tab>
+        </tabs>
+    </ribbon>
+</customUI>

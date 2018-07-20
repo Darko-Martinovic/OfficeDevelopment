@@ -161,13 +161,14 @@
       <SubType>Code</SubType>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -190,6 +191,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyRibbon.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\spell.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spell.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\table.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\word.bmp" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
