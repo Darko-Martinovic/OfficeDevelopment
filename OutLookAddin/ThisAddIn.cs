@@ -7,23 +7,23 @@ namespace OutLookAddin
         Outlook.Inspectors _inspectors;
 
 
-
-        void Inspectors_NewInspector(Outlook.Inspector inspector)
+        private void InspectorsNewInspector(Outlook.Inspector inspector)
         {
             if (!(inspector.CurrentItem is Outlook.MailItem mailItem)) return;
             if (mailItem.EntryID != null) return;
 
-            mailItem.Subject = @"Mal subject added by using Outlook add-in";
-            mailItem.Body = @"Mal body added by using Outlook add-in";
+            mailItem.Subject = @"Mail subject added by using Outlook VSTO";
+            mailItem.Body = @"Mail body added by using Outlook VSTO";
         }
-        private void ThisAddIn_Startup(object sender, System.EventArgs e)
+        private void ThisAddInStartup(object sender, System.EventArgs e)
         {
             _inspectors = Application.Inspectors;
             _inspectors.NewInspector +=
-                Inspectors_NewInspector;
+                InspectorsNewInspector;
         }
-        private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
+        private void ThisAddInShutdown(object sender, System.EventArgs e)
         {
+
             // Note: Outlook no longer raises this event. If you have code that 
             //    must run when Outlook shuts down, see https://go.microsoft.com/fwlink/?LinkId=506785
         }
@@ -36,8 +36,8 @@ namespace OutLookAddin
         /// </summary>
         private void InternalStartup()
         {
-            Startup += ThisAddIn_Startup;
-            Shutdown += ThisAddIn_Shutdown;
+            Startup += ThisAddInStartup;
+            Shutdown += ThisAddInShutdown;
         }
         
         #endregion
