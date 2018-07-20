@@ -28,7 +28,8 @@ namespace TestWordAddIn
             var spellCheck = Globals.ThisAddIn.Application.CheckSpelling(Globals.ThisAddIn.Application.ActiveDocument
                 .Range(ref startLocation, ref endLocation).Text);
 
-            MessageBox.Show(spellCheck ? @"Everything OK" : @"There are mistakes");
+            MessageBox.Show(spellCheck ? @"Everything OK" : @"There are mistakes", spellCheck ? "Info" : "Error",
+                MessageBoxButtons.OK, spellCheck ? MessageBoxIcon.Information : MessageBoxIcon.Error);
         }
 
         public void OnNumberOfWords(Office.IRibbonControl control)
@@ -65,16 +66,16 @@ namespace TestWordAddIn
 
         }
 
-        public Bitmap spell_get(Office.IRibbonControl control)
+        public Bitmap GetSpell(Office.IRibbonControl control)
         {
             return Properties.Resources.spell1;
         }
 
-        public Bitmap word_get(Office.IRibbonControl control)
+        public Bitmap GetWord(Office.IRibbonControl control)
         {
             return Properties.Resources.word;
         }
-        public Bitmap table_get(Office.IRibbonControl control)
+        public Bitmap GetTable(Office.IRibbonControl control)
         {
             return Properties.Resources.table;
         }

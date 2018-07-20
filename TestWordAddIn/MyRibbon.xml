@@ -4,10 +4,10 @@
     <tabs>
       <tab idMso="TabAddIns">
         <group id="ContentGroup" label="Number of Character in the Document">
-          <button id="textButton" label="Calculate" screentip="Text" size="large" onAction="OnNumberOfWords" getImage="word_get" supertip="Calculate the number of words in the document"/>
+          <button id="textButton" label="Calculate" screentip="Text" size="large" onAction="OnNumberOfWords" getImage="GetWord" supertip="Calculate the number of words in the document"/>
         </group>
         <group id="ContentGroup2" label="Insert Table">
-          <button id="tableButton"  label="Insert" screentip="Table" onAction="OnTableButton"  size="large" getImage="table_get" supertip="Inserts a table at the cursor location."/>
+          <button id="tableButton"  label="Insert" screentip="Table" onAction="OnTableButton"  size="large" getImage="GetTable" supertip="Inserts a table at the cursor location."/>
         </group>
         <group id="ContentGroup3" label="Spell Checking">
           <button id="checkSpellingButton"  label="Check" screentip="Spelling" onAction="OnSpellingButton" size="large"  getImage="spell_get"  showImage="1" supertip="Check spelling"/>
