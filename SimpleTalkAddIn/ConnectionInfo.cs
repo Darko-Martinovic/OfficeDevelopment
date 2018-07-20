@@ -27,7 +27,7 @@ namespace SimpleTalkExcellAddin
             cmbCharTypes.DataSource = Enum.GetValues(typeof(XlChartType));
             cmbCharTypes.SelectedItem = XlChartType.xl3DColumnClustered;
 
-            // There are 21 table Light styles in Excel 2013(6), 28 Medium styles and 11 
+            // There are 21 table Light styles in Excel 2013(6), 28 Medium styles and 11 dark styles
             for (var i = 1; i < 22; i++)
             {
                 cmbTableStyles.Items.Add($"TableStyleLight{i.ToString()}");
@@ -377,7 +377,7 @@ SELECT [SalesOrderID]
                     {
 
 
-                        if (lstMain.Items.Contains($"SalesPersonID"))
+                        if (lstMain.Items.Contains("SalesPersonID"))
                         {
                             lstMain.Items.Remove("SalesPersonID");
                             lstColumns.Items.Add("SalesPersonID");
