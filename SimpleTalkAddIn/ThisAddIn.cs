@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using System.Windows.Forms;
-
-namespace SimpleTalkExcellAddin
+﻿namespace SimpleTalkExcellAddin
 {
     public partial class ThisAddIn
     {
