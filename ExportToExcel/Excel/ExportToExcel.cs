@@ -19,7 +19,7 @@ namespace ExportToExcel.Excel
                                   string title, 
                                   out string errorString)
         {
-            var h = CheckExcellProcesses();
+            //var h = CheckExcellProcesses();
 
             errorString = string.Empty;
             var excelApp = new Application
@@ -63,12 +63,53 @@ namespace ExportToExcel.Excel
 
                     var localTitle = tm.Length > i1 ? tm[i1] : "Unknown";
 
-                    FormatFirstRow(
-                        excelWorkSheet.Range[excelWorkSheet.Cells[fRow, fCol], excelWorkSheet.Cells[fRow, table.Columns.Count]],
-                        localTitle);
-                    FormatSecondRow(
-                        excelWorkSheet.Range[excelWorkSheet.Cells[fRow + 1, fCol], excelWorkSheet.Cells[fRow + 1, table.Columns.Count]],
-                        mFileName, dataSource, userName);
+                    //FormatFirstRow(
+                    //    excelWorkSheet.Range[excelWorkSheet.Cells[fRow, fCol], excelWorkSheet.Cells[fRow, table.Columns.Count]],
+                    //    localTitle);
+
+                    Range newHeader = excelWorkSheet.Range[excelWorkSheet.Cells[fRow, fCol],
+                        excelWorkSheet.Cells[fRow, table.Columns.Count]];
+
+
+                    newHeader.Value2 = localTitle;
+                    newHeader.Select(); // <-----necessary run time exception
+                    newHeader.Merge(false);
+
+                    newHeader.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+                    newHeader.VerticalAlignment = XlVAlign.xlVAlignCenter;
+                    newHeader.Font.Bold = true;
+                    newHeader.Font.ColorIndex = 32;
+                    newHeader.Font.Size = 14;
+
+                    var border = newHeader.Borders;
+                    border.LineStyle = XlLineStyle.xlContinuous;
+                    border.Weight = 2d;
+                    border.ColorIndex = 31;
+                    border[XlBordersIndex.xlEdgeLeft].LineStyle = XlLineStyle.xlContinuous;
+                    border[XlBordersIndex.xlEdgeRight].LineStyle = XlLineStyle.xlContinuous;
+                    border[XlBordersIndex.xlEdgeTop].LineStyle = XlLineStyle.xlContinuous;
+                    border[XlBordersIndex.xlEdgeBottom].LineStyle = XlLineStyle.xlContinuous;
+
+
+                    //FormatSecondRow(
+                    //    excelWorkSheet.Range[excelWorkSheet.Cells[fRow + 1, fCol], excelWorkSheet.Cells[fRow + 1, table.Columns.Count]],
+                    //    mFileName, dataSource, userName);
+
+                    var rngSecondRow = excelWorkSheet.Range[excelWorkSheet.Cells[fRow + 1, fCol],
+                        excelWorkSheet.Cells[fRow + 1, table.Columns.Count]];
+                    rngSecondRow.Value2 =
+                        $"Made by : {userName}; on host : {Environment.MachineName}; date :" +
+                        $" {DateTime.Now.ToString(Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern)} " +
+                        $"{DateTime.Now.ToString(Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortTimePattern)}; " +
+                        $"file name : {mFileName};data source : {dataSource}";
+
+
+                    rngSecondRow.Select(); // <-----necessary run time exception
+                    rngSecondRow.Merge(false);
+
+                    rngSecondRow.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+                    rngSecondRow.VerticalAlignment = XlVAlign.xlVAlignCenter;
+                    rngSecondRow.Font.ColorIndex = 15;
 
                     var header = excelWorkSheet.Range[excelWorkSheet.Cells[startRow, 1],
                         excelWorkSheet.Cells[startRow, table.Columns.Count]];
@@ -188,7 +229,7 @@ namespace ExportToExcel.Excel
                 // ReSharper disable once RedundantAssignment
                 excelApp = null;
                 GC.Collect();
-                KillExcel(h);
+                //KillExcel(h);
             }
 
         }
@@ -221,19 +262,19 @@ namespace ExportToExcel.Excel
 
         }
 
-        private static void FormatSecondRow(Range newRng, string mFile, string dataSource, string userName)
+        private static void FormatSecondRow(Range rngSecondRow, string mFile, string dataSource, string userName)
         {
-            newRng.Value2 =
+            rngSecondRow.Value2 =
                 $"Made by : {userName}; on host : {Environment.MachineName}; date :" +
                 $" {DateTime.Now.ToString(Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern)} " +
                 $"{DateTime.Now.ToString(Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortTimePattern)}; " +
                 $"file name : {mFile};data source : {dataSource}";
-            newRng.Select(); // <-----necessary run time exception
-            newRng.Merge(false);
+            rngSecondRow.Select(); // <-----necessary run time exception
+            rngSecondRow.Merge(false);
 
-            newRng.HorizontalAlignment = XlHAlign.xlHAlignCenter;
-            newRng.VerticalAlignment = XlVAlign.xlVAlignCenter;
-            newRng.Font.ColorIndex = 15;
+            rngSecondRow.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            rngSecondRow.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            rngSecondRow.Font.ColorIndex = 15;
         }
         private static Hashtable CheckExcellProcesses()
         {

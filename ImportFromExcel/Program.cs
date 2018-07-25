@@ -69,7 +69,7 @@ namespace ImportFromExcel
                 // ReSharper disable once RedundantAssignment
                 dic = null;
                 Console.WriteLine("Successfully imported!");
-                Console.WriteLine("Start Task Manager and be sure that Excel instance is not there!");
+                Console.WriteLine("After closing Console Windows start Task Manager and be sure that Excel instance is not there!");
                 Console.WriteLine("Press any key to exit");
                 Console.ReadLine();
 

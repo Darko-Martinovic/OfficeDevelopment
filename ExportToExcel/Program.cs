@@ -43,6 +43,8 @@ namespace ExportToExcel
                 var ts = t2 - t1;
 
                 Console.WriteLine($"Success in {ts}! Check file : {fileName}");
+                Console.WriteLine("After closing Console Windows start Task Manager and be sure that Excel instance is not there!");
+
                 Console.WriteLine("Press any key to exit");
                 Console.ReadLine();
             }
