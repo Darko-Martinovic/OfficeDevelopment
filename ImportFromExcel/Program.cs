@@ -15,8 +15,9 @@ namespace ImportFromExcel
             // Could be passed as parameter or read it from configuration file
             const string fileToRead = @"C:\TMP\FirstTest.xlsx";
             Excel.Application xlApp = null;
+            Excel.Workbooks workbooks = null;
             Excel.Workbook xlWorkBook = null;
-
+            Excel.Sheets sheets = null;
             try
             {
                 xlApp = new Excel.Application();
@@ -24,11 +25,13 @@ namespace ImportFromExcel
                 Console.WriteLine($"Trying to open file {fileToRead}");
 
                 // Open Excel file and find out how many sheets are there, what are they names
-                xlWorkBook = xlApp.Workbooks.Open(fileToRead, 0, true, 5, "", "", true,
+                workbooks = xlApp.Workbooks;
+
+                xlWorkBook = workbooks.Open(fileToRead, 0, true, 5, "", "", true,
                     Origin: Excel.XlPlatform.xlWindows, Delimiter: "\t", Editable: false, Notify: false, Converter: 0,
                     AddToMru: true, Local: 1, CorruptLoad: 0);
 
-                var sheets = xlApp.ActiveWorkbook.Sheets;
+                sheets = xlApp.ActiveWorkbook.Sheets;
 
                 var dic = new List<string>();
 
@@ -49,6 +52,9 @@ namespace ImportFromExcel
                             Console.WriteLine($" Processing {s} table");
                             var myCommand = new OleDbDataAdapter($@"select * from {s};", myConnection);
                             myCommand.TableMappings.Add("Table", s);
+                            // If an exception is throun, probably you have to install following path 
+                            // https://www.microsoft.com/en-us/download/confirmation.aspx?id=13255
+
                             myCommand.Fill(dtSet);
                         }
                         foreach (DataTable t in dtSet.Tables)
@@ -58,37 +64,53 @@ namespace ImportFromExcel
                     }
                 }
 
-                xlWorkBook.Close();
-                xlApp.Quit();
+
+
                 // ReSharper disable once RedundantAssignment
                 dic = null;
                 Console.WriteLine("Successfully imported!");
+                Console.WriteLine("Start Task Manager and be sure that Excel instance is not there!");
                 Console.WriteLine("Press any key to exit");
                 Console.ReadLine();
 
             }
             catch (Exception e)
             {
-                xlWorkBook?.Close();
-                xlApp?.Quit();
                 Console.WriteLine($"Error importing from Excel : {e.Message}");
                 Console.ReadLine();
             }
             finally
             {
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+
+                if (sheets != null)
+                {
+                    Marshal.FinalReleaseComObject(sheets);
+                    sheets = null;
+                }
+                 
+
+                xlWorkBook.Close();
+
                 if (xlWorkBook != null)
                 {
-                    Marshal.ReleaseComObject(xlWorkBook);
+                    //Marshal.ReleaseComObject(xlWorkBook);
+                    Marshal.FinalReleaseComObject(xlWorkBook);
+                    xlWorkBook = null;
                 }
+
+                xlApp.Quit();
                 if (xlApp != null)
                 {
-                    Marshal.ReleaseComObject(xlApp);
+                    //Marshal.ReleaseComObject(xlApp);
+                    Marshal.FinalReleaseComObject(xlApp);
+                    xlApp = null;
+
                 }
-                // ReSharper disable once RedundantAssignment
-                xlWorkBook = null;
-                // ReSharper disable once RedundantAssignment
-                xlApp = null;
                 GC.Collect();
+                GC.WaitForPendingFinalizers();
+
 
             }
 

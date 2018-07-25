@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -119,6 +120,8 @@ namespace ExportToExcel.Excel
                         // using Value2 
                         excelWorkSheet.Range[excelWorkSheet.Cells[startRow + 1, 1], excelWorkSheet.Cells[endIndex, table.Columns.Count]].Value2 =
                             General.Convert(table);
+                        if (Debugger.IsAttached)
+                            Console.WriteLine("Setting value for table :"+  table.TableName);
 
                     }
 
