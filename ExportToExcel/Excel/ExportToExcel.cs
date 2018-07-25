@@ -19,7 +19,7 @@ namespace ExportToExcel.Excel
                                   string title, 
                                   out string errorString)
         {
-            Hashtable h = CheckExcellProcesses();
+            var h = CheckExcellProcesses();
 
             errorString = string.Empty;
             var excelApp = new Application
@@ -262,6 +262,7 @@ namespace ExportToExcel.Excel
                     excelProcess.Kill();
             }
 
+            // ReSharper disable once RedundantAssignment
             allProcesses = null;
         }
 
