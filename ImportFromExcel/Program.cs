@@ -52,7 +52,7 @@ namespace ImportFromExcel
                             Console.WriteLine($" Processing {s} table");
                             var myCommand = new OleDbDataAdapter($@"select * from {s};", myConnection);
                             myCommand.TableMappings.Add("Table", s);
-                            // If an exception is throun, probably you have to install following path 
+                            // If an exception is thrown, probably you have to install a patch from the following link
                             // https://www.microsoft.com/en-us/download/confirmation.aspx?id=13255
 
                             myCommand.Fill(dtSet);
