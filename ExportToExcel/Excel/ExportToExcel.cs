@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Data;
 using System.Diagnostics;
 using System.Reflection;
@@ -18,6 +19,8 @@ namespace ExportToExcel.Excel
                                   string title, 
                                   out string errorString)
         {
+            Hashtable h = CheckExcellProcesses();
+
             errorString = string.Empty;
             var excelApp = new Application
             {
@@ -185,6 +188,7 @@ namespace ExportToExcel.Excel
                 // ReSharper disable once RedundantAssignment
                 excelApp = null;
                 GC.Collect();
+                KillExcel(h);
             }
 
         }
@@ -230,6 +234,35 @@ namespace ExportToExcel.Excel
             newRng.HorizontalAlignment = XlHAlign.xlHAlignCenter;
             newRng.VerticalAlignment = XlVAlign.xlVAlignCenter;
             newRng.Font.ColorIndex = 15;
+        }
+        private static Hashtable CheckExcellProcesses()
+        {
+            var myHashtable = new Hashtable();
+            var allProcesses = Process.GetProcessesByName("excel");
+            
+            var iCount = 0;
+
+            foreach (var excelProcess in allProcesses)
+            {
+                myHashtable.Add(excelProcess.Id, iCount);
+                iCount = iCount + 1;
+            }
+
+            return myHashtable;
+        }
+
+        private static void KillExcel(Hashtable myHashtable)
+        {
+            var allProcesses = Process.GetProcessesByName("excel");
+
+            // check to kill the right process
+            foreach (var excelProcess in allProcesses)
+            {
+                if (myHashtable.ContainsKey(excelProcess.Id) == false)
+                    excelProcess.Kill();
+            }
+
+            allProcesses = null;
         }
 
     }
