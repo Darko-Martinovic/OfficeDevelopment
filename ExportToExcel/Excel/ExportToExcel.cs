@@ -19,7 +19,7 @@ namespace ExportToExcel.Excel
                                   string title, 
                                   out string errorString)
         {
-            //var h = CheckExcellProcesses();
+            var h = CheckExcellProcesses();
 
             errorString = string.Empty;
             var excelApp = new Application
@@ -32,9 +32,13 @@ namespace ExportToExcel.Excel
                 WindowState = XlWindowState.xlNormal
             };
 
-            // Create an Excel workbook instance and open it from the predefined location
-            var excelWorkBook = excelApp.Workbooks.Add(Template: Type.Missing);
 
+            // Create an Excel workbook instance 
+            var workbooks = excelApp.Workbooks;
+            var excelWorkBook = workbooks.Add(Template: Type.Missing);
+
+            var wst = excelWorkBook.Worksheets;
+            Worksheet excelWorkSheet = null;
             const int startRow = 3;
             const int fRow = 1;
             const int fCol = 1;
@@ -54,7 +58,7 @@ namespace ExportToExcel.Excel
                 foreach (DataTable table in ds.Tables)
                 {
                     // Add a new worksheet to workbook with the Data table name
-                    var excelWorkSheet = (Worksheet)excelWorkBook.Worksheets.Add();
+                    excelWorkSheet = (Worksheet)wst.Add();
 
                     // Name is limited to 32 chars
                     excelWorkSheet.Name = table.TableName.PadRight(limit).Substring(0, limit).Trim();
@@ -222,14 +226,18 @@ namespace ExportToExcel.Excel
             }
             finally
             {
+                Marshal.ReleaseComObject(excelWorkSheet);
+                Marshal.ReleaseComObject(wst);
+                Marshal.ReleaseComObject(workbooks);
                 Marshal.ReleaseComObject(excelWorkBook);
                 Marshal.ReleaseComObject(excelApp);
                 // ReSharper disable once RedundantAssignment
                 excelWorkBook = null;
+                workbooks = null;
                 // ReSharper disable once RedundantAssignment
                 excelApp = null;
                 GC.Collect();
-                //KillExcel(h);
+                KillExcel(h);
             }
 
         }

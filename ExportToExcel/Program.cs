@@ -31,7 +31,9 @@ namespace ExportToExcel
                 if (Directory.Exists(Path.GetDirectoryName(fileName)) == false)
                     Directory.CreateDirectory(Path.GetDirectoryName(fileName) ?? throw new InvalidOperationException());
 
-                Excel.ExportToExcel.Export(true, dataSet, fileName, name, out var error2);
+                Excel.ExportToExcel.Export(pasteRange: true, ds: dataSet, mFileName: fileName, title: name,
+                    errorString: out var error2);
+
                 if (error2 != string.Empty)
                 {
                     Console.WriteLine(error2);
