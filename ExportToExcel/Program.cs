@@ -13,7 +13,15 @@ namespace ExportToExcel
         {
             try
             {
-
+                //Check if Excel is installed
+                var officeType = Type.GetTypeFromProgID("Excel.Application");
+                if (officeType == null)
+                {
+                    Console.WriteLine("Sorry, Excel must be installed!");
+                    Console.WriteLine("Press any key to exit");
+                    Console.ReadLine();
+                    return;
+                }
                 var t1 = DateTime.Now;
                 var query = ConfigurationManager.AppSettings["TestQuery"];
                 const string name = "Sales_SalesOrderHeader;Sales_SalesOrderDetail";

@@ -12,6 +12,15 @@ namespace ImportFromExcel
         private static void Main()
         {
 
+            //Check if Excel is installed
+            var officeType = Type.GetTypeFromProgID("Excel.Application");
+            if (officeType == null)
+            {
+                Console.WriteLine("Sorry, Excel must be installed!");
+                Console.WriteLine("Press any key to exit");
+                Console.ReadLine();
+                return;
+            }
             // Could be passed as parameter or read it from configuration file
             const string fileToRead = @"C:\TMP\FirstTest.xlsx";
             Excel.Application xlApp = null;
