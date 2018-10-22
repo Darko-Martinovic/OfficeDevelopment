@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.Runtime.InteropServices;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -69,7 +70,20 @@ namespace ImportFromExcel
                         foreach (DataTable t in dtSet.Tables)
                         {
                             Console.WriteLine($" Table {t.TableName} has {t.Rows.Count} records");
+
+                            //var bulkcopy = new SqlBulkCopy(@"Data Source=your instance name;Initial Catalog=AdventureWorks2016;Integrated Security=True;")
+                            //{ DestinationTableName = t.TableName };
+                            ////I assume you have created the table previously
+                            //try
+                            //{
+                            //    bulkcopy.WriteToServer(t);
+                            //}
+                            //catch (Exception e)
+                            //{
+                            //    Console.WriteLine(e.Message);
+                            //}
                         }
+
                     }
                 }
 
@@ -98,7 +112,7 @@ namespace ImportFromExcel
                     Marshal.FinalReleaseComObject(sheets);
                     sheets = null;
                 }
-                 
+
 
                 xlWorkBook.Close();
 
