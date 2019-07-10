@@ -10,7 +10,6 @@ namespace SimpleTalkExcellAddin.Utils
             using (var dsData = new DataSet())
             {
 
-                //using (var conn = new OleDbConnection(@"Provider=SQLOLEDB.1;Integrated Security=SSPI;Data Source=DB1;Initial Catalog=BI_IRATA"))
                 using (var conn = new SqlConnection(i.ConnectionString))
                 {
                     var daData = new SqlDataAdapter(i.Query, conn);
