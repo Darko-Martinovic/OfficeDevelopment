@@ -60,46 +60,17 @@ namespace ExcelRemoteDataSource.ExcelHelper
 			{
 				if (showData)
 				{
-					var isError = false;
-					for (var i = 0; i <= 1; i++)
-					{
-						if (i == 1)
-						{
-							createModelConnection = false;
-							importRelation = false;
-						}
-						try
-						{
-							var con = excelWorkBook.Connections.Add2(
-								connectionName,
-								connectionDescription,
-								connectionString,
-								tsqlCommand,
-								XlCmdType.xlCmdSql,
-								createModelConnection,
-								importRelation);
-
-
-							// con.OLEDBConnection.RefreshDate
-							con.OLEDBConnection.RefreshOnFileOpen = refreshOnOpen;
-							if (isIntegrated)
-								con.OLEDBConnection.ServerCredentialsMethod = XlCredentialsMethod.xlCredentialsMethodIntegrated;
-							else
-							{
-								con.OLEDBConnection.ServerCredentialsMethod = XlCredentialsMethod.xlCredentialsMethodStored;
-								con.OLEDBConnection.SavePassword = true;
-							}
-							con.OLEDBConnection.BackgroundQuery = backQuery;
-						}
-						catch (Exception ex)
-						{
-							if (Debugger.IsAttached)
-								Debugger.Break();
-							isError = true;
-						}
-						if (isError == false)
-							break;
-					}
+					ShowData(
+						connectionString,
+						tsqlCommand,
+						connectionName,
+						connectionDescription,
+						refreshOnOpen,
+						isIntegrated,
+						excelWorkBook,
+						backQuery,
+						createModelConnection,
+						importRelation);
 				}
 
 				var pivotCache = excelApp.ActiveWorkbook.PivotCaches().Create(XlPivotTableSourceType.xlExternal,
@@ -123,7 +94,7 @@ namespace ExcelRemoteDataSource.ExcelHelper
 
 				var cell = excelApp.ActiveCell;
 				var slicerfieldNames = slicerFieldName.ToList();
-				if (slicerFieldName != null && slicerfieldNames.Any())
+				if (slicerfieldNames.Any())
 					cell = sheet.Cells[5, 1];
 
 
@@ -212,6 +183,62 @@ namespace ExcelRemoteDataSource.ExcelHelper
 				KillExcel();
 			}
 			return retValue;
+		}
+
+		private static void ShowData(string connectionString,
+							   string tsqlCommand,
+							   string connectionName,
+							   string connectionDescription,
+							   bool refreshOnOpen,
+							   bool isIntegrated,
+							   _Workbook excelWorkBook,
+							   bool backQuery,
+							   bool createModelConnection,
+							   bool importRelation)
+		{
+			var isError = false;
+			for (var i = 0; i <= 1; i++)
+			{
+				if (i == 1)
+				{
+					createModelConnection = false;
+					importRelation = false;
+				}
+
+				try
+				{
+					var con = excelWorkBook.Connections.Add2(
+						connectionName,
+						connectionDescription,
+						connectionString,
+						tsqlCommand,
+						XlCmdType.xlCmdSql,
+						createModelConnection,
+						importRelation);
+
+
+					// con.OLEDBConnection.RefreshDate
+					con.OLEDBConnection.RefreshOnFileOpen = refreshOnOpen;
+					if (isIntegrated)
+						con.OLEDBConnection.ServerCredentialsMethod = XlCredentialsMethod.xlCredentialsMethodIntegrated;
+					else
+					{
+						con.OLEDBConnection.ServerCredentialsMethod = XlCredentialsMethod.xlCredentialsMethodStored;
+						con.OLEDBConnection.SavePassword = true;
+					}
+
+					con.OLEDBConnection.BackgroundQuery = backQuery;
+				}
+				catch (Exception ex)
+				{
+					if (Debugger.IsAttached)
+						Debugger.Break();
+					isError = true;
+				}
+
+				if (isError == false)
+					break;
+			}
 		}
 
 		private static void AddPivotRemotely(
