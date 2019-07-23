@@ -10,4 +10,4 @@ SimpleTalkExcelAddIn                             | Excel VSTO
 TestWordAddIn                                    | Word VSTO
 OutLookAddin                                     | Outlook VSTO
 ExcelRemoteDataSource                            | Creates the pivot table using a remote data source, extends the Excel limit of 1 
-( see ReadMe.docx )                              | milion records. 
+( see ReadMe.docx )                              | million  records ( ReadMe.docx is a part of the project ). 
