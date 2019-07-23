@@ -291,7 +291,6 @@ namespace ExcelRemoteDataSource.ExcelHelper
 
 			if (!nameOfSum.Equals(string.Empty) && !masterFieldName.Equals(string.Empty))
 			{
-				// Sort DESC po prvoj numeričkoj veličini
 				var pf = (PivotField) pivotTable.PivotFields(masterFieldName);
 				pf.AutoSort((int)XlSortOrder.xlDescending, nameOfSum);
 
