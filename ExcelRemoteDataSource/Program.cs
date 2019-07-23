@@ -17,7 +17,7 @@ namespace ExcelRemoteDataSource
             var fieldColumnsName = ConfigurationManager.AppSettings["Columns"].Split(',');
             var fieldReportFilter = ConfigurationManager.AppSettings["Reports"].Split(',');
             var fileName = ConfigurationManager.AppSettings["fileName"];
-            var tableStyle = ConfigurationManager.AppSettings["tableStyle"];
+            var tableStyle = ConfigurationManager.AppSettings["PivotStyle"];
             var slicerStyle = ConfigurationManager.AppSettings["slicerStyle"];
             var chartType = ConfigurationManager.AppSettings["chartType"];
             var chartTitle = ConfigurationManager.AppSettings["chartTitle"];
