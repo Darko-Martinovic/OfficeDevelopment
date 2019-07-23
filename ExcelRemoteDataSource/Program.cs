@@ -40,7 +40,7 @@ namespace ExcelRemoteDataSource
                     fieldValuesName,
                     fieldColumnsName,
                     fieldReportFilter,
-                    fieldColumnsName,
+                    fieldRowsName,
                     ref errorMessage,
                     slicerStyle);
                 Console.WriteLine("Success!");
