@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2042
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExportToExcel", "ExportToExcel\ExportToExcel.csproj", "{14746B0B-E750-400A-812D-CBE46F5548BF}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWordAddIn", "TestWordAddIn\TestWordAddIn.csproj", "{7242C958-DDB9-4446-8C22-24202617BC59}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputeHashGui", "ComputeHashGui\ComputeHashGui.csproj", "{1CD0E96F-D214-4FC7-BDFF-30A06112339B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelRemoteDataSource", "ExcelRemoteDataSource\ExcelRemoteDataSource.csproj", "{7CC8359B-1223-4785-A2BE-DE0DAFC139C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{1CD0E96F-D214-4FC7-BDFF-30A06112339B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CD0E96F-D214-4FC7-BDFF-30A06112339B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CD0E96F-D214-4FC7-BDFF-30A06112339B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CC8359B-1223-4785-A2BE-DE0DAFC139C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CC8359B-1223-4785-A2BE-DE0DAFC139C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CC8359B-1223-4785-A2BE-DE0DAFC139C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CC8359B-1223-4785-A2BE-DE0DAFC139C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
