@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace ExcelRemoteDataSource.ExcelHelper
 {
-	internal class ExcelHelper
+	public class ExcelHelper
 
 	{
 
@@ -305,14 +305,7 @@ namespace ExcelRemoteDataSource.ExcelHelper
 				pivotTable.CompactLayoutRowHeader = masterFieldName;
 			}
 
-			if (!masterColumnName.Equals(string.Empty))
-			{
-				// Skupi sve po horizontali
-				var pf2 = (PivotField)pivotTable.PivotFields(masterColumnName);
-				pf2.ShowDetail = false;
-
-				pivotTable.CompactLayoutColumnHeader = "Godine";
-			}
+	
 
 			if (fieldReportNames != null)
 			{
@@ -324,9 +317,9 @@ namespace ExcelRemoteDataSource.ExcelHelper
 			}
 			if (slicerfieldNames != null)
 			{
-				const int cTop = 0;
+				const int cTop = 300;
 				const int cWidth = 100;
-				const int cHeight = 50;
+				const int cHeight = 100;
 
 				var dLeft = 0;
 
@@ -343,7 +336,7 @@ namespace ExcelRemoteDataSource.ExcelHelper
 						Height: cHeight);
 
 
-					slicer.NumberOfColumns = slicerCurrent.SlicerItems.Count;
+					slicer.NumberOfColumns = slicerCurrent.SlicerItems.Count/2;
 					slicer.Style = slicerStyle;
 
 
