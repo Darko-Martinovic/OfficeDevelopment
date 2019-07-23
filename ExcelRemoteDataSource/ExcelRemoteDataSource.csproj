@@ -70,6 +70,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <EmbeddedResource Include="Result\RemoteDataSource.xlsx" />
+    <EmbeddedResource Include="Instructions\ReadMe.docx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
