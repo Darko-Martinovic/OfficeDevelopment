@@ -1,10 +1,10 @@
-﻿using System;
-using Microsoft.Office.Interop.Excel;
-using System.Runtime.InteropServices;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace ExcelRemoteDataSource.ExcelHelper
 {
@@ -16,28 +16,28 @@ namespace ExcelRemoteDataSource.ExcelHelper
 
 
 		public bool CreatePivotWithRemoteDataSource(
-													bool showData, 
+													bool showData,
 													bool spetialStyles,
-													string connectionString, 
-													string tsqlCommand, 
-													string fileName, 
-													string tableStyle, 
+													string connectionString,
+													string tsqlCommand,
+													string fileName,
+													string tableStyle,
 													string charType,
-													string chartTitle, 
-													string sheetTitle, 
+													string chartTitle,
+													string sheetTitle,
 													IEnumerable<string> pivotRowFields,
-													IEnumerable<string> pivotValueFields, 
+													IEnumerable<string> pivotValueFields,
 													IEnumerable<string> pivotColumnFields,
 													IEnumerable<string> pivotReportFields,
 													IEnumerable<string> slicerFieldName,
 													ref string errorMessage,
-													string slicerStyle, 
-													string connectionName = "Pivot", 
+													string slicerStyle,
+													string connectionName = "Pivot",
 													string connectionDescription = "Description",
-													bool refreshOnOpen = false, 
-													bool isIntegrated = false, 
+													bool refreshOnOpen = false,
+													bool isIntegrated = false,
 													bool backQuery = true,
-													bool createModelConnection = true, 
+													bool createModelConnection = true,
 													bool importRelation = true)
 		{
 			Processes();
@@ -140,7 +140,7 @@ namespace ExcelRemoteDataSource.ExcelHelper
 				}
 				catch (Exception ex)
 				{
-					if(Debugger.IsAttached)
+					if (Debugger.IsAttached)
 						Debugger.Break();
 				}
 
@@ -242,15 +242,15 @@ namespace ExcelRemoteDataSource.ExcelHelper
 		}
 
 		private static void AddPivotRemotely(
-			                           _Workbook eWorkBook, 
-			                           Worksheet pivotWorkSheet, 
-			                           PivotTable pivotTable,
-			                           IEnumerable<string> fieldRowNames,
-			                           IEnumerable<string> fieldColumnNames,
-			                           IEnumerable<string> fieldValueNames,
-			                           IEnumerable<string> fieldReportNames,
-			                           IEnumerable<string> slicerfieldNames, 
-			                           string slicerStyle)
+									   _Workbook eWorkBook,
+									   Worksheet pivotWorkSheet,
+									   PivotTable pivotTable,
+									   IEnumerable<string> fieldRowNames,
+									   IEnumerable<string> fieldColumnNames,
+									   IEnumerable<string> fieldValueNames,
+									   IEnumerable<string> fieldReportNames,
+									   IEnumerable<string> slicerfieldNames,
+									   string slicerStyle)
 		{
 			PivotField rowField;
 			PivotField dataField;
@@ -276,10 +276,10 @@ namespace ExcelRemoteDataSource.ExcelHelper
 					rowField = (PivotField)pivotTable.PivotFields(name);
 					if (masterFieldName.Equals(string.Empty))
 					{
-						var pf = (PivotField) pivotTable.PivotFields(name);
+						var pf = (PivotField)pivotTable.PivotFields(name);
 						masterFieldName = pf.Name;
 					}
-						
+
 					rowField.Orientation = XlPivotFieldOrientation.xlRowField;
 				}
 			}
@@ -293,11 +293,11 @@ namespace ExcelRemoteDataSource.ExcelHelper
 					colField.Orientation = XlPivotFieldOrientation.xlColumnField;
 					if (masterColumnName.Equals(string.Empty))
 					{
-						var pf = (PivotField) pivotTable.PivotFields(name);
+						var pf = (PivotField)pivotTable.PivotFields(name);
 						masterColumnName = pf.Name;
 					}
 
-						
+
 				}
 			}
 
@@ -318,7 +318,7 @@ namespace ExcelRemoteDataSource.ExcelHelper
 
 			if (!nameOfSum.Equals(string.Empty) && !masterFieldName.Equals(string.Empty))
 			{
-				var pf = (PivotField) pivotTable.PivotFields(masterFieldName);
+				var pf = (PivotField)pivotTable.PivotFields(masterFieldName);
 				pf.AutoSort((int)XlSortOrder.xlDescending, nameOfSum);
 
 				if (rowCounter > 1)
@@ -326,12 +326,12 @@ namespace ExcelRemoteDataSource.ExcelHelper
 					var pf1 = (PivotField)pivotTable.PivotFields(masterFieldName);
 					pf1.ShowDetail = false;
 				}
-					
+
 
 				pivotTable.CompactLayoutRowHeader = masterFieldName;
 			}
 
-	
+
 
 			if (fieldReportNames != null)
 			{
@@ -362,7 +362,7 @@ namespace ExcelRemoteDataSource.ExcelHelper
 						Height: cHeight);
 
 
-					slicer.NumberOfColumns = slicerCurrent.SlicerItems.Count/2;
+					slicer.NumberOfColumns = slicerCurrent.SlicerItems.Count / 2;
 					slicer.Style = slicerStyle;
 
 

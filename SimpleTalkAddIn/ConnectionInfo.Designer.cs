@@ -113,7 +113,7 @@ namespace SimpleTalkExcellAddin
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Location = new System.Drawing.Point(37, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.Size = new System.Drawing.Size(83, 15);
             this.label1.TabIndex = 70;
             this.label1.Text = "Server name :";
             // 
@@ -158,7 +158,7 @@ namespace SimpleTalkExcellAddin
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label5.Location = new System.Drawing.Point(39, 274);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(91, 13);
+            this.label5.Size = new System.Drawing.Size(104, 15);
             this.label5.TabIndex = 58;
             this.label5.Text = "Database name  :";
             // 
@@ -168,7 +168,7 @@ namespace SimpleTalkExcellAddin
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label4.Location = new System.Drawing.Point(39, 212);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 13);
+            this.label4.Size = new System.Drawing.Size(67, 15);
             this.label4.TabIndex = 59;
             this.label4.Text = "Password :";
             // 
@@ -178,7 +178,7 @@ namespace SimpleTalkExcellAddin
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Location = new System.Drawing.Point(37, 141);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 13);
+            this.label3.Size = new System.Drawing.Size(77, 15);
             this.label3.TabIndex = 60;
             this.label3.Text = "User name  :";
             // 
@@ -188,7 +188,7 @@ namespace SimpleTalkExcellAddin
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label2.Location = new System.Drawing.Point(37, 78);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 13);
+            this.label2.Size = new System.Drawing.Size(90, 15);
             this.label2.TabIndex = 61;
             this.label2.Text = "Authentication :";
             // 
@@ -226,7 +226,7 @@ namespace SimpleTalkExcellAddin
             this.metroLabel1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.metroLabel1.Location = new System.Drawing.Point(3, 15);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(41, 13);
+            this.metroLabel1.Size = new System.Drawing.Size(45, 15);
             this.metroLabel1.TabIndex = 71;
             this.metroLabel1.Text = "Query :";
             // 
@@ -239,6 +239,7 @@ namespace SimpleTalkExcellAddin
             this.txtQuery.Location = new System.Drawing.Point(3, 49);
             this.txtQuery.Multiline = true;
             this.txtQuery.Name = "txtQuery";
+            this.txtQuery.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtQuery.Size = new System.Drawing.Size(632, 322);
             this.txtQuery.TabIndex = 2;
             // 
@@ -268,7 +269,7 @@ namespace SimpleTalkExcellAddin
             this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label9.Location = new System.Drawing.Point(451, 280);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(41, 13);
+            this.label9.Size = new System.Drawing.Size(44, 15);
             this.label9.TabIndex = 72;
             this.label9.Text = "ROWS";
             // 
@@ -279,7 +280,7 @@ namespace SimpleTalkExcellAddin
             this.label10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label10.Location = new System.Drawing.Point(227, 145);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(49, 13);
+            this.label10.Size = new System.Drawing.Size(53, 15);
             this.label10.TabIndex = 72;
             this.label10.Text = "VALUES";
             // 
@@ -290,7 +291,7 @@ namespace SimpleTalkExcellAddin
             this.label8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label8.Location = new System.Drawing.Point(451, 145);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(60, 13);
+            this.label8.Size = new System.Drawing.Size(68, 15);
             this.label8.TabIndex = 72;
             this.label8.Text = "COLUMNS";
             // 
@@ -301,7 +302,7 @@ namespace SimpleTalkExcellAddin
             this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label7.Location = new System.Drawing.Point(451, 22);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(51, 13);
+            this.label7.Size = new System.Drawing.Size(56, 15);
             this.label7.TabIndex = 72;
             this.label7.Text = "FILTERS";
             // 
@@ -311,7 +312,7 @@ namespace SimpleTalkExcellAddin
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label6.Location = new System.Drawing.Point(8, 16);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(151, 13);
+            this.label6.Size = new System.Drawing.Size(172, 15);
             this.label6.TabIndex = 72;
             this.label6.Text = "Choose fields to add to report :";
             // 
@@ -322,9 +323,10 @@ namespace SimpleTalkExcellAddin
             this.lstRows.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstRows.HorizontalScrollbar = true;
+            this.lstRows.ItemHeight = 17;
             this.lstRows.Location = new System.Drawing.Point(454, 299);
             this.lstRows.Name = "lstRows";
-            this.lstRows.Size = new System.Drawing.Size(176, 67);
+            this.lstRows.Size = new System.Drawing.Size(176, 53);
             this.lstRows.TabIndex = 1;
             this.lstRows.DragDrop += new System.Windows.Forms.DragEventHandler(this.LstMain_DragDrop);
             this.lstRows.DragOver += new System.Windows.Forms.DragEventHandler(this.LstMain_DragOver);
@@ -337,9 +339,10 @@ namespace SimpleTalkExcellAddin
             this.lstValues.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstValues.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstValues.HorizontalScrollbar = true;
+            this.lstValues.ItemHeight = 17;
             this.lstValues.Location = new System.Drawing.Point(230, 164);
             this.lstValues.Name = "lstValues";
-            this.lstValues.Size = new System.Drawing.Size(176, 67);
+            this.lstValues.Size = new System.Drawing.Size(176, 53);
             this.lstValues.TabIndex = 1;
             this.lstValues.DragDrop += new System.Windows.Forms.DragEventHandler(this.LstMain_DragDrop);
             this.lstValues.DragOver += new System.Windows.Forms.DragEventHandler(this.LstMain_DragOver);
@@ -352,9 +355,10 @@ namespace SimpleTalkExcellAddin
             this.lstColumns.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstColumns.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstColumns.HorizontalScrollbar = true;
+            this.lstColumns.ItemHeight = 17;
             this.lstColumns.Location = new System.Drawing.Point(454, 164);
             this.lstColumns.Name = "lstColumns";
-            this.lstColumns.Size = new System.Drawing.Size(176, 67);
+            this.lstColumns.Size = new System.Drawing.Size(176, 53);
             this.lstColumns.TabIndex = 1;
             this.lstColumns.DragDrop += new System.Windows.Forms.DragEventHandler(this.LstMain_DragDrop);
             this.lstColumns.DragOver += new System.Windows.Forms.DragEventHandler(this.LstMain_DragOver);
@@ -367,9 +371,10 @@ namespace SimpleTalkExcellAddin
             this.lstReportFilters.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstReportFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstReportFilters.HorizontalScrollbar = true;
+            this.lstReportFilters.ItemHeight = 17;
             this.lstReportFilters.Location = new System.Drawing.Point(454, 41);
             this.lstReportFilters.Name = "lstReportFilters";
-            this.lstReportFilters.Size = new System.Drawing.Size(176, 67);
+            this.lstReportFilters.Size = new System.Drawing.Size(176, 53);
             this.lstReportFilters.TabIndex = 1;
             this.lstReportFilters.DragDrop += new System.Windows.Forms.DragEventHandler(this.LstMain_DragDrop);
             this.lstReportFilters.DragOver += new System.Windows.Forms.DragEventHandler(this.LstMain_DragOver);
@@ -381,10 +386,10 @@ namespace SimpleTalkExcellAddin
             this.lstMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstMain.HorizontalScrollbar = true;
+            this.lstMain.ItemHeight = 17;
             this.lstMain.Location = new System.Drawing.Point(11, 41);
-            this.lstMain.MultiColumn = true;
             this.lstMain.Name = "lstMain";
-            this.lstMain.Size = new System.Drawing.Size(176, 353);
+            this.lstMain.Size = new System.Drawing.Size(176, 359);
             this.lstMain.TabIndex = 1;
             this.lstMain.DragDrop += new System.Windows.Forms.DragEventHandler(this.LstMain_DragDrop);
             this.lstMain.DragOver += new System.Windows.Forms.DragEventHandler(this.LstMain_DragOver);
@@ -410,7 +415,7 @@ namespace SimpleTalkExcellAddin
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(20, 91);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(60, 13);
+            this.label13.Size = new System.Drawing.Size(66, 15);
             this.label13.TabIndex = 1;
             this.label13.Text = "Pivot styles";
             // 
@@ -419,7 +424,7 @@ namespace SimpleTalkExcellAddin
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(20, 54);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 13);
+            this.label12.Size = new System.Drawing.Size(73, 15);
             this.label12.TabIndex = 1;
             this.label12.Text = "Table Styles";
             // 
@@ -428,7 +433,7 @@ namespace SimpleTalkExcellAddin
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(20, 20);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(64, 13);
+            this.label11.Size = new System.Drawing.Size(71, 15);
             this.label11.TabIndex = 1;
             this.label11.Text = "Chart Types";
             // 

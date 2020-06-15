@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Microsoft.Office.Core;
+using SimpleTalkExcellAddin.Utils;
+using System;
 using System.Data;
 using System.Diagnostics;
 using System.Windows.Forms;
-using Microsoft.Office.Core;
-using SimpleTalkExcellAddin.Utils;
 using ListBox = System.Windows.Forms.ListBox;
 
 
@@ -227,7 +227,7 @@ SELECT [SalesOrderID]
                 Query = txtQuery.Text,
                 ConnectionString = Inputs.GetConnectionString(txtServer.Text, cmbDatabase.Text,
                     cmbAuth.SelectedIndex == 0, txtUserName.Text, txtPassword.Text),
-                ChartType = (XlChartType) cmbCharTypes.SelectedItem,
+                ChartType = (XlChartType)cmbCharTypes.SelectedItem,
                 TableStyle = cmbTableStyles.SelectedItem.ToString(),
                 PivotStyle = cmbPivotStyles.SelectedItem.ToString(),
             };
@@ -311,7 +311,7 @@ SELECT [SalesOrderID]
                     return;
                 }
 
-                if (cmbDatabase.SelectedIndex == 0 || cmbDatabase.Text.Equals(string.Empty))
+                if (cmbDatabase.SelectedIndex == -1 || cmbDatabase.Text.Equals(string.Empty))
                 {
                     MessageBox.Show(@"Please select the database",
                         @"Error",

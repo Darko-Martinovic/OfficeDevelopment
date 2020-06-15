@@ -43,7 +43,7 @@ namespace ExcelRemoteDataSource
                     fieldRowsName,
                     ref errorMessage,
                     slicerStyle);
-                Console.WriteLine("Success!");
+                Console.WriteLine($"Success! The pivot file {fileName} is created!");
             }
             catch (Exception e)
             {
